@@ -2,21 +2,24 @@
 # Paths
 # -------------------------
 MODEL_PATH = "../model/car_price_model.pth"
-NORM_PARAMS_PATH = "../model/norm_params.pkl"
-USED_CAR_CSV_PATH = "../data/used_cars.csv"
+STATISTICS_PATH = "../model/statistics.pkl"
+FEATURE_TRANSFORMER_PATH = "../model/feature_transformer.pkl"
+DATASET_CSV_PATH = "../data/car_price_dataset.csv"
 
 # -------------------------
 # Training hyperparameters
 # -------------------------
-LEARNING_RATE = 0.0001      # Learning rate
-TRAINING_EPOCHS = 50000     # Number of training epochs
-VAL_INTERVAL = 1000         # Interval for validation loss evaluation
+LEARNING_RATE = 1e-3
+WEIGHT_DECAY = 5e-6
+BATCH_SIZE = 128
+NUM_EPOCHS = 100
+VAL_INTERVAL = 1
 
 # -------------------------
 # Data split ratios
 # -------------------------
-SPLIT_DATASET = True        # Set to False to use the same dataset for train/val/test
-SPLIT_RANDOM_STATE = 42     # Seed for reproducible shuffling; set to None for random behavior
-TRAIN_SET_SIZE = 0.7
-VAL_SET_SIZE = 0.15
-TEST_SET_SIZE = 0.15
+SPLIT_DATASET = True
+SPLIT_RANDOMIZATION_SEED = 42
+TRAIN_SPLIT_RATIO = 0.7
+VAL_SPLIT_RATIO = 0.15
+TEST_SPLIT_RATIO = 0.15

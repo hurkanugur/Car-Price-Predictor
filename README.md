@@ -4,26 +4,29 @@
 This project predicts **used car prices** using a regression model built in **PyTorch**.  
 It covers the complete pipeline from data preprocessing to model inference, including:
 
-- 📊 **Linear Regression Model** implemented with PyTorch  
+- 🧩 **Structured data preprocessing** with numeric clipping, categorical encoding, and feature normalization  
+- 📊 **Neural Network Regression Model** with **Batch Normalization** and **Dropout** for better training stability and generalization  
 - ⚖️ **Mean Squared Error (MSE)** as the loss function  
 - 🧠 **Adam optimizer** for training  
 - 🔀 **Train/Validation/Test split** for robust evaluation  
-- 📈 **Feature & target normalization** using training statistics
+- 📈 **Feature & target normalization** using training statistics  
+- 💾 **Saving/loading trained model and preprocessing artifacts** for inference  
 
 ---
 
 ## 🧩 Libraries
 - **PyTorch** – model, training, and inference  
 - **pandas** – data handling & preprocessing  
-- **scikit-learn** – dataset splitting  
-- **matplotlib** – plotting loss curves
+- **scikit-learn** – ColumnTransformer, standardization, one-hot encoding  
+- **matplotlib** – plotting loss curves  
+- **pickle** – saving/loading feature transformer, statistics and trained model
 
 ---
 
 ## ⚙️ Requirements
 
-- Python **3.13+**
-- Recommended editor: **VS Code**
+- Python **3.13+**  
+- Recommended editor: **VS Code**  
 
 ---
 
@@ -64,40 +67,52 @@ cd src
 
 ```bash
 data/
-└── used_cars.csv            # Raw dataset
+└── car_price_dataset.csv        # Raw used car data
 
 model/
-├── car_price_model.pth      # Trained model (after training)
-└── norm_params.pkl          # Normalization params (after training)
+├── car_price_model.pth          # Trained PyTorch model
+└── feature_transformer.pkl      # Preprocessing pipeline
 
 src/
-├── config.py                # Configurations (paths, hyperparameters, dataset split)
-├── data_utils.py            # Data loading, preprocessing, normalization
-├── model_utils.py           # Model definition and save/load utilities
-├── plot_utils.py            # Loss plotting
-├── predict_car_prices.py    # Use the trained model with real-world inputs
-├── train_model.py           # Training and evaluation
+├── config.py                    # Paths, hyperparameters, split ratios
+├── dataset.py                   # Data loading & preprocessing
+├── main_train.py                # Training & model saving
+├── main_inference.py            # Inference pipeline
+├── model.py                     # Neural network definition
+├── visualize.py                 # Training/validation plots
 
-requirements.txt             # Python dependencies
+requirements.txt                 # Python dependencies
 ```
+
+---
+
+## 📂 Model Architecture
+
+```bash
+Input → Linear(256) → BatchNorm → ReLU → Dropout(0.2)
+      → Linear(128) → BatchNorm → ReLU → Dropout(0.2)
+      → Linear(64)  → BatchNorm → ReLU → Dropout(0.1)
+      → Linear(1)   → Output
+```
+
 ---
 
 ## 📂 Train the Model
 ```bash
-python train_model.py
+python main_train.py
 ```
 or
 ```bash
-python3 train_model.py
+python3 main_train.py
 ```
 
 ---
 
 ## 📂 Run Predictions on Real Data
 ```bash
-python predict_car_prices.py
+python main_inference.py
 ```
 or
 ```bash
-python3 predict_car_prices.py
+python3 main_inference.py
 ```
