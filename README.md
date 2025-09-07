@@ -4,8 +4,8 @@
 This project predicts **used car prices** using a feedforward neural network regression model built in **PyTorch**.
 It covers the complete pipeline from data preprocessing to model training and inference, including:
 
-- 🧩 **Structured data preprocessing** with numeric clipping, categorical encoding, and feature normalization  
-- 📊 **Neural Network Regression Model** with **Batch Normalization** and **Dropout** for better training stability and generalization  
+- 📊 **Neural Network Regression Model** with **Batch Normalization** and **Dropout** for better training stability and generalization 
+- 🧩 **Structured data preprocessing** with numeric clipping, categorical encoding, and feature normalization   
 - ⚖️ **Mean Squared Error (MSE)** as the loss function  
 - 🧠 **Adam optimizer** for training  
 - 🔀 **Train/Validation/Test split** for robust evaluation  
