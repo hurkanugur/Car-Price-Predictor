@@ -22,10 +22,11 @@ class CarPriceDataset:
         self.categorical_cols = ["Brand", "Model", "Transmission", "Fuel_Type", "Color"]
 
     # ----------------- Public Methods -----------------
-    def get_input_dim(self, data_loader):
-        """Return the number of input features from a DataLoader batch."""
+
+    def get_flattened_input_size(self, data_loader):
+        """Return number of input features per sample after flattening (for MLPs)."""
         sample_X, _ = next(iter(data_loader))
-        input_dim = sample_X.shape[1]
+        input_dim = sample_X[0].numel()
         print(f"• Input dimension: {input_dim}")
         return input_dim
 
@@ -57,6 +58,7 @@ class CarPriceDataset:
         return y_original_tensor
 
     # ----------------- Save / Load -----------------
+    
     def save_statistics(self):
         """Save statistics to file."""
         stats = {

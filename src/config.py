@@ -13,7 +13,7 @@ LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 5e-6
 BATCH_SIZE = 128
 NUM_EPOCHS = 100
-VAL_INTERVAL = 1
+VAL_INTERVAL = 5
 
 # -------------------------
 # Data split ratios

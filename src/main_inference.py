@@ -45,7 +45,7 @@ def main():
     ])
 
     X = dataset.prepare_data_for_inference(df)
-    input_dim = X.shape[1]
+    input_dim = X[0].numel()
 
     # -------------------------
     # Load trained model
