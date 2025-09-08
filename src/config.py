@@ -19,7 +19,7 @@ VAL_INTERVAL = 1
 # Data split ratios
 # -------------------------
 SPLIT_DATASET = True
-SPLIT_RANDOMIZATION_SEED = 42
 TRAIN_SPLIT_RATIO = 0.7
 VAL_SPLIT_RATIO = 0.15
 TEST_SPLIT_RATIO = 0.15
+SPLIT_RANDOMIZATION_SEED = 42   # Int -> Reproducible splits | None -> Fully random splits
