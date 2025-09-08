@@ -137,6 +137,11 @@ class CarPriceDataset:
 
     def _split_dataset(self, X, y):
         """Split dataset into training, validation, and test subsets."""
+
+        if not config.SPLIT_DATASET:
+            print("• Dataset splitting disabled → using same data for train/val/test.")
+            return X, X, X, y, y, y
+    
         dataset = TensorDataset(X, y)
         n_total = len(dataset)
         n_train = int(config.TRAIN_SPLIT_RATIO * n_total)
