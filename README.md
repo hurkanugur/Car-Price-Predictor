@@ -76,6 +76,7 @@ model/
 src/
 ├── config.py                    # Paths, hyperparameters, split ratios
 ├── dataset.py                   # Data loading & preprocessing
+├── device_manager.py            # Selects and manages compute device
 ├── main_train.py                # Training & model saving
 ├── main_inference.py            # Inference pipeline
 ├── model.py                     # Neural network definition
