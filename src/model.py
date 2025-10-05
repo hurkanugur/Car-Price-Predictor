@@ -40,6 +40,6 @@ class CarPricePredictionModel(nn.Module):
         print(f"• Model saved to {config.MODEL_PATH}")
 
     def load(self):
-        self.load_state_dict(torch.load(config.MODEL_PATH, map_location=self.device))
+        self.load_state_dict(torch.load(config.MODEL_PATH, weights_only=True, map_location=self.device))
         self.to(self.device)
         print(f"• Model loaded from {config.MODEL_PATH}")

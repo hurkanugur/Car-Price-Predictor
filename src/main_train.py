@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from dataset import CarPriceDataset
+from device_manager import DeviceManager
 from model import CarPricePredictionModel
 from visualize import LossMonitor
 
@@ -82,9 +83,9 @@ def test_model(model, dataset, test_loader, device, n_samples=10):
 
 def main():
 
-    # Select CPU or GPU
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"• Selected device: {device}")
+    # Select CUDA (GPU) / MPS (Mac) / CPU
+    device_manager = DeviceManager()
+    device = device_manager.device
 
     # Load and prepare data
     dataset = CarPriceDataset()
@@ -113,5 +114,8 @@ def main():
     # Keep the final plot displayed
     loss_monitor.close()
 
+    # Release the memory
+    device_manager.release_memory()
+    
 if __name__ == "__main__":
     main()

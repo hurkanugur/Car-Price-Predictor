@@ -1,15 +1,16 @@
 import pandas as pd
 import torch
 from dataset import CarPriceDataset
+from device_manager import DeviceManager
 from model import CarPricePredictionModel
 
 def main():
     # -------------------------
-    # Select device
+    # Select CUDA (GPU) / MPS (Mac) / CPU
     # -------------------------
     print("-------------------------------------")
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"• Selected device: {device}")
+    device_manager = DeviceManager()
+    device = device_manager.device
 
     # -------------------------
     # Load dataset normalization params and categorical mappings
@@ -68,6 +69,13 @@ def main():
     print("Predicted Prices:")
     for idx, row in df.iterrows():
         print(f"{row['Brand']} {row['Model']} ({row['Year']}): Predicted Price = ${y_pred[idx].item():,.2f}")
+
+    # -------------------------
+    # Release the memory
+    # -------------------------
+    print("-------------------------------------")
+    device_manager.release_memory()
+    print("-------------------------------------")
 
 if __name__ == "__main__":
     main()
